@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 # sys bir tamsayının maximum değerini alır.
 maxint = sys.maxsize
+generation = 1000
 cities = []
 order = []
 totalCities = 52
@@ -82,10 +83,10 @@ def calcFitness():
             ax1.set_xlabel("Best " + str(d))
             recordDistance = d
             bestEver = population[i].copy()
-            plotDistance(bestEver,True )
+            plotDistance(bestEver,True)
         fitness.append(1/(d+1))
     plotDistance(population[i], False)
-    print(recordDistance)
+    #print(recordDistance)
     normalizeFitness()
 def normalizeFitness():
     sum = 0
@@ -132,6 +133,6 @@ def swap(a, i, j):
 if __name__ == "__main__":
     createCities()
     createPopulation()
-    while 1:
+    for i in range(0, generation):
         calcFitness()
         nextGeneration()
