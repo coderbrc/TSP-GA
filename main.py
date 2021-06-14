@@ -7,12 +7,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 # sys bir tamsayının maximum değerini alır.
 maxint = sys.maxsize
-generation = 1000
+iteration = 10000
 cities = []
 order = []
 totalCities = 52
 population = []
-populationSize = 20
+populationSize = 26
 # fitness uygunluk fonksiyonu
 fitness = []
 bestEver = []
@@ -20,7 +20,6 @@ cityPoints = []
 recordDistance = sys.maxsize
 # figsize grafiğin boyutunu belirler
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 7))
-
 ax1.set_xlim([0, 2000])
 ax1.set_ylim([0, 1400])
 ax2.set_xlim([0, 2000])
@@ -28,9 +27,7 @@ ax2.set_ylim([0, 1400])
 plt.ion()
 Ln, = ax1.plot(random.sample(range(0, 1000), totalCities), marker='o', color='b')
 Ln2, = ax2.plot(random.sample(range(0, 1000), totalCities), marker='o', color='r')
-
 plt.show()
-
 def plotDistance(order, bestEver):
     cityX=[]
     cityY=[]
@@ -125,7 +122,7 @@ def mutate(order, mutationRate):
         if random.random() < mutationRate:
             indexA = math.floor(random.randrange(0, len(order)))
             indexB = (indexA+1) % totalCities
-            swap(order, indexA,indexB)
+            swap(order, indexA, indexB)
 def swap(a, i, j):
     temp = a[i]
     a[i] = a[j]
@@ -133,6 +130,6 @@ def swap(a, i, j):
 if __name__ == "__main__":
     createCities()
     createPopulation()
-    for i in range(0, generation):
+    for i in range(0, iteration):
         calcFitness()
         nextGeneration()
